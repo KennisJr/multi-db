@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "docker run --name postgres -e POSTGRES_USER=edsonkennis -e POSTGRES_PASSWORD=12345 -e POSTGRES_DB=livros -p 5432:5432 -d postgres",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "mocha"
   },
@@ -17,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/KennisJr/multi-db/issues"
   },
-  "homepage": "https://github.com/KennisJr/multi-db#readme"
+  "homepage": "https://github.com/KennisJr/multi-db#readme",
+  "dependencies": {
+    "pg": "^8.10.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.29.1"
+  }
 }
