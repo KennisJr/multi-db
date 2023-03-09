@@ -5,19 +5,18 @@ class Postgres extends ICrud {
         super()
         this._driver = null;
         this._livros = null;
-        this._connect();
     }
     async isConnected() {
-        try{
+        try {
             await this._driver.authenticate();
             return true;
-        }catch(error) {
+        } catch (error) {
             console.log('ERROR', error);
             return false
         }
     }
     async defineModel() {
-        this._livros = driver.define('livros', {
+        this._livros = this._driver.define('livros', {
             id: {
                 type: Sequelize.INTEGER,
                 required: true,
@@ -32,17 +31,18 @@ class Postgres extends ICrud {
                 type: Sequelize.STRING,
                 required: true
             }
-            }, {
-                tableName: 'TB_LIVROS',
-                freezeTableName: false,
-                timestamps: false
-            })
-        await Livros.sync();
+        }, {
+            tableName: 'TB_LIVROS',
+            freezeTableName: false,
+            timestamps: false
+        })
+        await this._livros.sync();
     }
-    create(item) {
-        console.log('O item foi salvo em Postgres')
+    async create(item) {
+        const {dataValues} = await this._livros.create(item);
+        return dataValues;
     }
-    _connect() {
+    async connect() {
         this._driver = new Sequelize(
             'livros',
             'edsonkennis',
@@ -54,7 +54,7 @@ class Postgres extends ICrud {
                 operatorAliases: false
             }
         )
-
+        await this.defineModel();
     }
 }
 

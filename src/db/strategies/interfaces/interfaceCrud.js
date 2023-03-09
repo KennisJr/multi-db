@@ -23,6 +23,9 @@ class ICrud {
     isConnected() {
         throw new NotImplementedException();
     }
+    connect() {
+        return this._database.connect();
+    }
 }
 
 module.exports = ICrud;

@@ -17,7 +17,7 @@ SELECT * FROM TB_LIVROS WHERE NOME = 'O pequeno príncipe'
 
 --update
 UPDATE TB_LIVROS
-SET NOME = 'Colleen Hoover',
+SET NOME = 'Colleen Hoover'
 WHERE ID = 2
 
 --delete
