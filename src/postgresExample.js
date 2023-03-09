@@ -35,6 +35,10 @@ async function main() {
             timestamps: false
         })
     await Livros.sync();
+    await Livros.create({
+        nome:'It a coisa',
+        autor:'Stephen King'
+    })
 
     const result = await Livros.findAll({ raw: true });
     console.log(result);
