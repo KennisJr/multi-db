@@ -20,4 +20,9 @@ describe('Postgres Strategy', () => {
         delete result.id;
         assert.deepEqual(result, MOCK_LIVRO_CADASTRAR);
     })
+    it('Listar', async function () {
+        const [result] = await context.read({nome: MOCK_LIVRO_CADASTRAR.nome});
+        delete result.id;
+        assert.deepEqual(result, MOCK_LIVRO_CADASTRAR);
+    })
 })
