@@ -14,6 +14,7 @@ const MOCK_LIVRO_ATUALIZAR = {
 describe('Postgres Strategy', () => {
     beforeEach(async () => {
        await context.connect();
+       await context.delete();
        await context.create(MOCK_LIVRO_ATUALIZAR);
     })
     it('PostgresSQL Connection', async () => {
@@ -40,5 +41,10 @@ describe('Postgres Strategy', () => {
         const [itemAtualizado] = await context.read({id: itemAtualizar.id})
         assert.deepEqual(result, 1);
         assert.deepEqual(itemAtualizado.nome, novoItem.nome);
+    })
+    it('Remover por id', async function() {
+        const [item] = await context.read({});
+        const result = await context.delete(item.id);
+        assert(result, 1);
     })
 })
