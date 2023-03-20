@@ -50,7 +50,7 @@ class Postgres extends ICrud {
     }
     async delete(id) {
         const query = id ? { id } : {}
-        return this._livros.findAll(destroy({where:query}));
+        return this._livros.destroy({where:query});
     }
     async connect() {
         this._driver = new Sequelize(
